@@ -1,0 +1,100 @@
+#include<iostream>
+#include<conio.h>
+#include<ctype.h>
+#include<stdio.h>
+#include<string.h>
+
+                              //       CAESAR CIPHER 
+
+using namespace std;
+
+	int k;
+
+void encrypt(char str[100])
+{
+     for(int i=0;str[i]!='\0';++i)
+     {
+     	str[i]=tolower(str[i]);
+	 }
+	 cout<<"The Plaintext is : "<<str<<endl<<endl;
+	 
+	 
+	 for(int n=0;str[n]!='\0';++n)
+	 {
+	 	if(int(str[n])>=97 && int(str[n])<=122)
+	 	{
+	 	  str[n]=int(str[n])-97;
+		  str[n]=(str[n]+k)%26;
+		  str[n]=str[n]+97;	
+		     
+		}
+	 }
+	 
+	 for(int j=0;str[j]!='\0';++j)
+	 {
+	 	if(int(str[j])>=97 && int(str[j])<=122)
+	 	str[j]=int(str[j])-32;
+	 	
+	 }
+	 
+	 cout<<endl<<"Cipher text is : ";
+	 for(int p=0;str[p]!='\0';++p)
+	 {
+	 	cout<<char(str[p]);
+	 }
+	 
+}
+
+void decrypt(char str[100])
+{
+     for(int i=0;str[i]!='\0';++i)
+     {
+     	str[i]=toupper(str[i]);
+	 }
+	 cout<<"The Ciphertext is : "<<str<<endl<<endl;
+	 
+	 
+	 for(int n=0;str[n]!='\0';++n)
+	 {
+	 	if(int(str[n])>=65 && int(str[n])<=90)
+	 	{
+	 	  str[n]=int(str[n])-65;
+		  str[n]=(str[n]-k)%26;
+		  if(str[n]<0)
+		  str[n]=str[n]+26;
+		  str[n]=str[n]+65;	
+		     
+		}
+	 }
+	 
+	 for(int j=0;str[j]!='\0';++j)
+	 {
+	 	if(int(str[j])>=65 && int(str[j])<=90)
+	 	str[j]=int(str[j])+32;
+	 	
+	 }
+	 
+	 cout<<endl<<"Plain text is : ";
+	 for(int p=0;str[p]!='\0';++p)
+	 {
+	 	cout<<char(str[p]);
+	 }
+	 
+}
+
+
+int main()
+{
+	char str[100];
+	cout<<"Enter the Text to be encrypted : ";
+	gets(str);
+
+	 cout<<"Enter the Key to be used: ";
+	 cin>>k;
+	 cout<<endl;
+	encrypt(str);
+	cout<<endl;
+	cout<<endl<<"DECRYPTION: "<<endl<<endl;
+	decrypt(str);
+	
+}
