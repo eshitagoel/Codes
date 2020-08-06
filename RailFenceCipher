@@ -1,0 +1,108 @@
+#include<iostream>
+#include<conio.h>
+#include<ctype.h>
+#include<stdio.h>
+#include<string.h>
+
+                                       // RAIL FENCE CIPHER
+
+using namespace std;
+
+char c[2][100]; 
+char str[100];
+int length=0;
+
+void encrypt(char str[100])
+{
+	int p=0;
+
+	for(int i=0;str[i]!='\0';++i)
+	{
+		c[p][i]=str[i];
+		if(p==0)
+		p=1;
+		else
+		p=0;
+		c[p][i]=' ';
+	
+	}
+	
+	cout<<endl;
+	for(int k=0;k<=1;++k)
+	{
+	for(int j=0;str[j]!='\0';++j)
+	{
+	   cout<<c[k][j];
+	}
+	cout<<endl;
+    }
+    
+    	cout<<endl<<"The encrypted data is : "<<endl<<endl;
+    	
+    	for(int l=0;l<=1;++l)
+    	{
+    		for(int m=0;m<length;++m)
+    		{
+    			if(m%2==l)
+    			cout<<c[l][m];
+			}
+			cout<<" ";
+		}
+		
+		cout<<endl;
+	
+}
+
+void decrypt(char c[2][100])
+{
+	cout<<endl<<"The encrypted data is : "<<endl<<endl;
+	
+		for(int l=0;l<=1;++l)
+    	{
+    		for(int m=0;m<length;++m)
+    		{
+    			if(m%2==l)
+    			cout<<c[l][m];
+			}
+			cout<<" ";
+		}
+		
+		
+    
+    char plaintext[100];
+    int t=0;
+    for(int i=0;i<length;++i)
+    {
+    	plaintext[i]=c[t][i];
+    	if(t==0)
+    	t=1;
+    	else
+    	t=0;
+	}
+	
+	cout<<endl<<endl<<"Plaintext is : "<<endl<<endl;
+	
+	for(int j=0;j<length;++j)
+	{
+		cout<<plaintext[j];
+	}
+}
+
+int main()
+{
+	cout<<"Enter the Text to be encrypted : ";
+	gets(str);
+	
+	// To calculate length of the plaintext:
+	
+	for(int i=0;str[i]!='\0';++i)
+	{
+		length++;
+	}
+	
+	encrypt(str);
+	cout<<endl;
+	cout<<"Decyrption of Rail Fence Cipher: "<<endl;
+	decrypt(c);
+	
+}
